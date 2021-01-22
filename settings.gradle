@@ -1,0 +1,3 @@
+include ':badchar-data'
+include ':app'
+rootProject.name = "Badchar-Clean"
