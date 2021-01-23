@@ -1,10 +1,12 @@
 package `in`.ev.data.di.module
 import `in`.ev.data.BuildConfig
+import `in`.ev.data.model.ErrorEntity
 import `in`.ev.data.network.api.BadCharacterApi
 import `in`.ev.data.network.interceptors.NetworkInterceptor
 import `in`.ev.data.network.interceptors.OfflineCacheInterceptor
 import `in`.ev.pediadata.utils.NetworkConstants
 import android.content.Context
+import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -56,6 +58,12 @@ class NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(converterFactory)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoshiErrorAdapter(moshi: Moshi): JsonAdapter<ErrorEntity> {
+        return moshi.adapter(ErrorEntity::class.java)
     }
 
     @Provides
