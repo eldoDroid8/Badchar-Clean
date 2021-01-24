@@ -8,14 +8,17 @@ import com.squareup.moshi.JsonAdapter
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class BadCharRemoteDataSource @Inject constructor(val badCharacterApi: BadCharacterApi, val
-retrofitClient: Retrofit, moshiAdapter: JsonAdapter<ErrorEntity>): BaseDataSource(retrofitClient,
-    moshiAdapter) {
-
-   suspend fun getBadCharacters(): EntityResultWrapper<List<CharacterEntity>> {
-        val response  = getResponse(request = {badCharacterApi.getAllBadCharacters()},
-            defaultErrorMessage = "Please check your network connection")
-        return response
+class BadCharRemoteDataSource @Inject constructor(
+    private val badCharacterApi: BadCharacterApi,
+    retrofitClient: Retrofit, moshiAdapter: JsonAdapter<ErrorEntity>
+) : BaseDataSource(
+    retrofitClient,
+    moshiAdapter
+) {
+    suspend fun getBadCharacters(): EntityResultWrapper<List<CharacterEntity>> {
+        return getResponse(
+            request = { badCharacterApi.getAllBadCharacters() }
+        )
     }
 
 }

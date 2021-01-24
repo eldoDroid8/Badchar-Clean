@@ -36,10 +36,10 @@ class HomeViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             getCharacterUseCase.execute().collect { response ->
                 when (response) {
-                    is Response.Loading ->  {
+                    is Response.Loading -> {
                         adjustShimmerVisibility(response.loading)
                     }
-                    is Response.ApiCallSuccess  ->  {
+                    is Response.ApiCallSuccess -> {
                         response.data?.let {
                             characterLiveData.value = ViewState.Success(it)
                             characterList.apply {
@@ -47,7 +47,7 @@ class HomeViewModel @ViewModelInject constructor(
                             }
                         }
                     }
-                    is Response.ApiCallError    ->  {
+                    is Response.ApiCallError -> {
                         characterLiveData.value = ViewState.Failure(response.error)
                     }
                 }
