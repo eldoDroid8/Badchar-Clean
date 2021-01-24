@@ -10,9 +10,18 @@
         android:name="in.ev.badchar.ui.home.HomeFragment"
         android:label="fragment_bad_char_home"
         tools:layout="@layout/fragment_home" >
-       <!-- <action
+        <action
             android:id="@+id/action_badCharHomeFragment_to_badCharDetailFragment"
-            app:destination="@id/badCharDetailFragment" />-->
+            app:destination="@id/badCharDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/badCharDetailFragment"
+        android:name="in.ev.badchar.ui.home.detail.BadCharDetailFragment"
+        android:label="fragment_bad_char_detail"
+        tools:layout="@layout/fragment_bad_char_detail" >
+        <argument
+            android:name="bad_char_selected"
+            app:argType="in.ev.domain.model.Character" />
     </fragment>
 
 </navigation>
