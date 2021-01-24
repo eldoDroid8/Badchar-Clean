@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">60dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+
+    <dimen name="margin_default">16dp</dimen>
+
+    <dimen name="margin_between_items_default">8dp</dimen>
+    <dimen name="elevation">4dp</dimen>
+    <dimen name="corner">4dp</dimen>
+    <dimen name="padding_default">16dp</dimen>
+
+    <dimen name="spacing_mini">20dp</dimen>
+    <dimen name="spacing_ultra_mini">15dp</dimen>
+    <dimen name="spacing_tiny">10dp</dimen>
+    <dimen name="spacing_extra_tiny">5dp</dimen>
+    <dimen name="spacing_ultra_tiny">2dp</dimen>
+    <dimen name="spacing_ultra_tiny3">3dp</dimen>
+
+    <dimen name="font_size_small">14sp</dimen>
+
+    <dimen name="layout_dimension_extra_large">400dp</dimen>
+
+
+</resources>

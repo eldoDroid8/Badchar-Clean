@@ -5,5 +5,5 @@ import `in`.ev.domain.model.Response
 import kotlinx.coroutines.flow.Flow
 
 interface GetCharacterUsecase {
-    suspend fun<T: Any> execute(): Flow<Response<List<Character>>>
+    suspend fun execute(): Flow<Response<List<Character>>>
 }

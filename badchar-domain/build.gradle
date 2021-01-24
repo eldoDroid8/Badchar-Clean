@@ -42,6 +42,8 @@ dependencies {
 
     implementation hilt.hiltAndroid
     kapt hilt.kaptHiltAndroidCompiler
+    kapt hilt.hiltAndroidxHiltCompiler
+    implementation hilt.hiltJetpack
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

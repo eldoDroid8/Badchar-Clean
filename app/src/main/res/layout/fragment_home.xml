@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="in.ev.badchar.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.home.HomeFragment">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_character"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginStart="@dimen/spacing_ultra_mini"
+                android:layout_marginEnd="@dimen/spacing_ultra_mini"
+                android:queryHint="@string/label_hint_type_char"
+                app:queryHint="@string/label_hint_type_char"
+                app:defaultQueryHint="@string/label_hint_type_char"
+                app:iconifiedByDefault="false"
+                app:layout_constraintHeight_percent="0.07"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                app:shimmer_auto_start="false"
+                app:shimmerVisibility="@{viewModel.showShimmerAnimation}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_character">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/shimmer_place_holder" />
+
+                    <include layout="@layout/shimmer_place_holder" />
+
+                    <include layout="@layout/shimmer_place_holder" />
+
+                    <include layout="@layout/shimmer_place_holder" />
+
+                    <include layout="@layout/shimmer_place_holder" />
+
+                    <include layout="@layout/shimmer_place_holder" />
+
+                    <include layout="@layout/shimmer_place_holder" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_character"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:homeAdapter="@{viewModel.observableList}"
+                app:itemClickListener="@{viewModel.itemSelected}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_character" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:layout_marginTop="-24dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_filter"
+            android:tint="@color/filters_chips"
+            android:onClick="@{()->viewModel.showFilterDialog()}"
+            app:backgroundTint="@color/teal_700"
+            app:elevation="0dp"
+           />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

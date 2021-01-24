@@ -16,9 +16,10 @@ ext {
     def moshiVersion = "1.11.0"
 
 
-    def hilt_version = "2.28-alpha"
+    def hilt_version = "2.28.3-alpha"
 
     def glideVersion = "4.11.0"
+    def shimmerVersion ="0.5.0"
     classPaths = [
             gradlePath: "com.android.tools.build:gradle:$android_gradle_plugin",
             kotlinGradlePath: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
@@ -71,6 +72,9 @@ ext {
 
     others = [
             glide: "com.github.bumptech.glide:glide:$glideVersion",
+            shimmer: "com.facebook.shimmer:shimmer:$shimmerVersion",
+            recyclerPicker: "com.github.guilhe:recycler-picker-dialog:1.0.4"
+
     ]
 }
 /*ext.deps = [:]*/

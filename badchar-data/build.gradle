@@ -41,6 +41,8 @@ dependencies {
     implementation hilt.hiltAndroid
     implementation project(path: ':badchar-domain')
     kapt hilt.kaptHiltAndroidCompiler
+    implementation hilt.hiltJetpack
+    kapt hilt.hiltAndroidxHiltCompiler
 
     implementation network.retrofit
     implementation network.retrofitMoshi

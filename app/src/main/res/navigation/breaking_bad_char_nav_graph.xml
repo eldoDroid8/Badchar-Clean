@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/breaking_bad_char_nav_graph"
+    app:startDestination="@id/badCharHomeFragment">
+
+    <fragment
+        android:id="@+id/badCharHomeFragment"
+        android:name="in.ev.badchar.ui.home.HomeFragment"
+        android:label="fragment_bad_char_home"
+        tools:layout="@layout/fragment_home" >
+       <!-- <action
+            android:id="@+id/action_badCharHomeFragment_to_badCharDetailFragment"
+            app:destination="@id/badCharDetailFragment" />-->
+    </fragment>
+
+</navigation>

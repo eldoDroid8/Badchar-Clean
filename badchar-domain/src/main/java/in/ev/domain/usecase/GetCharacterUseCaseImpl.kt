@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetCharacterUseCaseImpl @Inject constructor(val repository: BadCharacterRepository): GetCharacterUsecase {
-    override suspend fun<T: Any> execute(): Flow<Response<List<Character>>> {
+    override suspend fun execute(): Flow<Response<List<Character>>> {
        return repository.getBadCharacters()
     }
 }

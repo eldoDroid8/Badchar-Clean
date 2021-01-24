@@ -4,7 +4,7 @@ import `in`.ev.data.model.ErrorEntity
 import `in`.ev.data.network.api.BadCharacterApi
 import `in`.ev.data.network.interceptors.NetworkInterceptor
 import `in`.ev.data.network.interceptors.OfflineCacheInterceptor
-import `in`.ev.pediadata.utils.NetworkConstants
+import `in`.ev.data.utils.NetworkConstants
 import android.content.Context
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -23,7 +23,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class NetworkModule {
+object NetworkModule {
 
     @Provides
     @Singleton
@@ -37,6 +37,7 @@ class NetworkModule {
                             offlineCacheInterceptor: OfflineCacheInterceptor
     ): OkHttpClient {
         val httpClient = OkHttpClient().newBuilder()
+        httpClient.cache(cache)
         if (BuildConfig.DEBUG) {
             val interceptor = HttpLoggingInterceptor()
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -75,7 +76,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideUrl(): String {
-        return NetworkConstants.ENDPOINT_CAT
+        return NetworkConstants.ENDPOINT
     }
 
     @Provides
@@ -97,4 +98,11 @@ class NetworkModule {
         val cacheSize = 5*1024*1024
         return OfflineCacheInterceptor(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideMoshiConverterFactory(moshi: Moshi): MoshiConverterFactory{
+        return  MoshiConverterFactory.create(moshi)
+    }
+
 }

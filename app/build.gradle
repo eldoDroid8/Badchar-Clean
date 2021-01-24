@@ -33,19 +33,49 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
+    implementation project(path: ':badchar-domain')
+    implementation project(path: ':badchar-data')
 
     implementation kotlin.jetbrainsKotlinStdLib
     implementation kotlin.coreKtx
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation androidx.navigationFragement
+    implementation androidx.navigationUi
+    implementation androidx.appcompatLib
+    implementation androidx.recyclerview
+    implementation androidx.constraintLayout
+    implementation androidx.cardView
+
+    implementation google.material
 
     implementation hilt.hiltAndroid
     kapt hilt.kaptHiltAndroidCompiler
+    implementation hilt.hiltJetpack
+    kapt hilt.hiltAndroidxHiltCompiler
+
+
+    implementation network.retrofit
+    implementation network.retrofitMoshi
+    implementation network.moshi
+    implementation network.moshiKotlin
+    kapt network.moshiCodeGen
+    implementation networkClient.interceptor
+    implementation networkClient.okhttp
+
+    implementation others.shimmer
+    implementation others.glide
+    implementation others.recyclerPicker
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "io.mockk:mockk:1.10.5"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1"
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

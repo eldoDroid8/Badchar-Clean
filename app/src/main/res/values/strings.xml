@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Badchar-Clean</string>
+
+    <string name="label_hint_type_char">Type a character name to search</string>
+    <string name="label_name">Name</string>
+    <string name="label_occupation">Occupation</string>
+    <string name="label_status">Status</string>
+    <string name="label_nick_name">Nick Name</string>
+    <string name="label_season">Season</string>
 </resources>

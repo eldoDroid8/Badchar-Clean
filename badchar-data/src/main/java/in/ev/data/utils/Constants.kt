@@ -1,9 +1,8 @@
-package `in`.ev.pediadata.utils
+package `in`.ev.data.utils
 
 class NetworkConstants {
     companion object EndPoints {
-        const val ENDPOINT_DOG = "https://breakingbadapi.com/api/"
-        const val ENDPOINT_CAT = "https://docs.thecatapi.com/"
+        const val ENDPOINT = "https://breakingbadapi.com/api/"
     }
 }
 
