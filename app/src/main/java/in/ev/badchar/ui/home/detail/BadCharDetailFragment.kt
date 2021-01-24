@@ -13,10 +13,10 @@ import androidx.navigation.fragment.navArgs
 
 
 class BadCharDetailFragment : Fragment() {
-    val args: BadCharDetailFragmentArgs by navArgs()
-    var character: Character ?= null
-    val charDetailViewModel: BadCharDetailViewModel by viewModels()
-    lateinit var homeDetailBinding: FragmentBadCharDetailBinding
+    private val args: BadCharDetailFragmentArgs by navArgs()
+    private var character: Character ?= null
+    private val charDetailViewModel: BadCharDetailViewModel by viewModels()
+    private var homeDetailBinding: FragmentBadCharDetailBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,13 +27,13 @@ class BadCharDetailFragment : Fragment() {
         character?.let {
             charDetailViewModel.showCharacterDetails(it)
         }
-        return homeDetailBinding.root
+        return homeDetailBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeDetailBinding.setVariable(BR.viewModel, charDetailViewModel)
-        homeDetailBinding.executePendingBindings()
+        homeDetailBinding?.setVariable(BR.viewModel, charDetailViewModel)
+        homeDetailBinding?.executePendingBindings()
     }
 
 

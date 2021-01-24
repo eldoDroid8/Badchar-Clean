@@ -8,16 +8,16 @@ import `in`.ev.domain.model.Character
 import android.widget.Filter
 import android.widget.Filterable
 
-class HomeBadCharAdapter () : BaseRecyclerAdapter<Character, HomeItemViewModel>(
+class HomeBadCharAdapter : BaseRecyclerAdapter<Character, HomeItemViewModel>(
     layoutId = R.layout.list_item_home
 ), Filterable {
-    var itemSelected: RecyclerviewItemSelected ?= null
+    private var itemSelected: RecyclerviewItemSelected ?= null
     override fun getItemCount(): Int {
         return super.filterdCharacters.size
     }
 
     override fun getObjForPosition(position: Int): HomeItemViewModel {
-        return HomeItemViewModel(super.filterdCharacters.get(position), itemSelected)
+        return HomeItemViewModel(super.filterdCharacters[position], itemSelected)
     }
 
     internal  fun setItemClickListener(clickListener: RecyclerviewItemSelected) {
@@ -28,10 +28,8 @@ class HomeBadCharAdapter () : BaseRecyclerAdapter<Character, HomeItemViewModel>(
         if(selectedSeason.isEmpty()) {
             removeSeasonFilter()
         } else {
-            val filterCharacters = filterCharacterBySeason(selectedSeason, super.filterdCharacters)
-            filterCharacters?.let {
-                updateListBySeasonFilter(filterCharacters.toMutableList())
-            }
+            val filterCharacters: MutableList<Character> = filterCharacterBySeason(selectedSeason, super.filterdCharacters)
+            this.updateListBySeasonFilter(filterCharacters.toMutableList())
         }
     }
 
@@ -39,11 +37,11 @@ class HomeBadCharAdapter () : BaseRecyclerAdapter<Character, HomeItemViewModel>(
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    filterdCharacters = listItems as ArrayList<Character>
+                filterdCharacters = if (charSearch.isEmpty()) {
+                    listItems as ArrayList<Character>
                 } else {
                     val resultList = searchThroughArray(constraint, listItems)
-                    filterdCharacters = resultList
+                    resultList
                 }
                 val filterResults = FilterResults()
                 filterResults.values = filterdCharacters
@@ -51,7 +49,7 @@ class HomeBadCharAdapter () : BaseRecyclerAdapter<Character, HomeItemViewModel>(
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filterdCharacters = results?.values as ArrayList<Character>
+                filterdCharacters = results?.values as MutableList<Character>
                 notifyDataSetChanged()
             }
         }

@@ -1,7 +1,6 @@
 package `in`.ev.data.model
 
 
-import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

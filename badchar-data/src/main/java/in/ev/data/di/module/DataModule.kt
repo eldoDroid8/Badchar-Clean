@@ -5,9 +5,6 @@ import `in`.ev.data.model.ErrorEntity
 import `in`.ev.data.network.api.BadCharacterApi
 import `in`.ev.data.repository.BadcharRepositoryImpl
 import `in`.ev.domain.repository.BadCharacterRepository
-import `in`.ev.domain.usecase.GetCharacterUseCaseImpl
-import `in`.ev.domain.usecase.GetCharacterUsecase
-import android.app.Application
 import com.squareup.moshi.JsonAdapter
 import dagger.Binds
 import dagger.Module

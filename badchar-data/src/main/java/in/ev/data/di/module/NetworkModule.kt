@@ -2,10 +2,7 @@ package `in`.ev.data.di.module
 import `in`.ev.data.BuildConfig
 import `in`.ev.data.model.ErrorEntity
 import `in`.ev.data.network.api.BadCharacterApi
-import `in`.ev.data.network.interceptors.NetworkInterceptor
-import `in`.ev.data.network.interceptors.OfflineCacheInterceptor
 import `in`.ev.data.utils.NetworkConstants
-import android.content.Context
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -13,8 +10,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
-import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,18 +28,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(cache: Cache, networkInterceptor: NetworkInterceptor,
-                            offlineCacheInterceptor: OfflineCacheInterceptor
-    ): OkHttpClient {
+    fun provideOkhttpClient(): OkHttpClient {
         val httpClient = OkHttpClient().newBuilder()
-        httpClient.cache(cache)
         if (BuildConfig.DEBUG) {
             val interceptor = HttpLoggingInterceptor()
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             return httpClient.addInterceptor(interceptor).build()
         }
-        httpClient.addNetworkInterceptor(networkInterceptor)
-        httpClient.addInterceptor(offlineCacheInterceptor)
         return httpClient.build()
     }
 
@@ -76,27 +66,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideUrl(): String {
+        //we can move the url to buildConfig
         return NetworkConstants.ENDPOINT
-    }
-
-    @Provides
-    @Singleton
-    fun provideResponseCache(@ApplicationContext context: Context): Cache {
-        val cacheSize = 5*1024*1024
-        return Cache(context.cacheDir, cacheSize.toLong())
-    }
-
-    @Provides
-    @Singleton
-    fun provideNetworkInterceptor(): NetworkInterceptor {
-        return NetworkInterceptor()
-    }
-
-    @Provides
-    @Singleton
-    fun provideOfflineInterceptor(@ApplicationContext context: Context): OfflineCacheInterceptor {
-        val cacheSize = 5*1024*1024
-        return OfflineCacheInterceptor(context)
     }
 
     @Provides

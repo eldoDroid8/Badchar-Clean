@@ -9,6 +9,7 @@ import org.junit.runners.JUnit4
 import `in`.ev.domain.model.Character
 import `in`.ev.domain.model.Error
 import `in`.ev.domain.model.Response
+import `in`.ev.domain.usecase.GetCharacterUseCaseImpl
 import `in`.ev.domain.usecase.GetCharacterUsecase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -26,7 +27,7 @@ class HomeViewModelTest {
     var instantExecutorRule = InstantTaskExecutorRule()
 
     @MockK
-    private lateinit var useCase: GetCharacterUsecase
+    private lateinit var useCase: GetCharacterUseCaseImpl
 
     private lateinit var viewModel: HomeViewModel
 

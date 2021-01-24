@@ -40,7 +40,7 @@ abstract class BaseRecyclerAdapter<T, E>(private val layoutId: Int) : RecyclerVi
     }
 
     fun clearItems() {
-        if (null != listItems && listItems.size > 0) listItems.clear()
+        if (listItems.size > 0) listItems.clear()
     }
 
     fun removeSeasonFilter(){

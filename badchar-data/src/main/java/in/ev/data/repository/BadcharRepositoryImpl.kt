@@ -21,12 +21,12 @@ class BadcharRepositoryImpl @Inject constructor(private val dataSource: BadCharR
             when (val result: EntityResultWrapper<List<CharacterEntity>> =
                 dataSource.getBadCharacters()) {
                 is Success -> {
-                    val characters = result.data?.map { it.toDomain(it) }
+                    val characters = result.data?.map { toDomain(it) }
                     emit(Loading(false))
                     emit(ApiCallSuccess(characters))
                 }
                 is Error -> {
-                    val error = result.error.toDomain(result.error)
+                    val error = toDomain(result.error)
                     emit(Loading(false))
                     emit(ApiCallError(error))
                 }
